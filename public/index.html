@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="./assets/styles/style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <nav class="menubar">
+
+    <label class="switch menubar__element">
+      <input type="checkbox" class="switch__input">
+      <span class="switch__slider switch__slider--round"></span>
+    </label>
+    <h2 class="menubar__element">Patty Mode</h2>
+  </nav>
+  <main class="container">
+
+
+    <div id="theDiv"></div>
+    <div class="dialog dialog--blue dialog--round">
+      <h1 class="dialog__title">How to center a DIV</h1>
+      <button class="dialog__button">Start Tutorial</button>
+    </div>
+    <audio src="./assets/audio/behold_the_div.mp3" id="beholdTheDivAudio"></audio>
+    <div class="area">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </main>
+  <script>
+    let dialog = document.querySelector(".dialog");
+    let button = document.querySelector(".dialog__button");
+    let audio = document.querySelector("#beholdTheDivAudio");
+    let theDiv = document.querySelector("#theDiv");
+
+    document.querySelector(".switch__input").onclick = function (e) {
+      theDiv.classList.toggle("pattyStyle");
+    }
+
+    let wait = (ms, callback) => new Promise((resolve, reject) => {
+      setTimeout(() => {
+        callback();
+        resolve();
+      }, ms);
+    });
+
+    function closeDialog() {
+      theDiv.classList.toggle('visible');
+      dialog.classList.toggle('hideAnimation');
+
+      wait(2000, () => {
+        audio.play();
+
+      }).then(() => {
+        wait(3500, () => {
+          theDiv.classList.toggle('beholdingAnimation');
+        })
+      })
+
+      audio.onended = function () {
+        wait(3000, () => {
+
+          button.textContent = "Restart tutorial"
+
+          dialog.classList.toggle('hideAnimation');
+          theDiv.classList.toggle('visible');
+          theDiv.classList.toggle('beholdingAnimation');
+        })
+      }
+    }
+
+    button.onclick = closeDialog;
+  </script>
+</body>
+
+</html>
