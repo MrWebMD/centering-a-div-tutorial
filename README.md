@@ -10,13 +10,6 @@ Navigate to the root folder of the project and use the node package manager [npm
 npm install
 ```
 
-## Environment
-This tutorial requires that a file named `.env` exists in the root directory of the project. Create a file named `.env` located at `/centering-a-div-tutorial/.env`. Next, replace the contents of the file with the template below.
-
-```
-NODE_ENV=production
-PORT=3003
-```
 Once you've saved this, your environment is all set up!
 
 ## Usage
